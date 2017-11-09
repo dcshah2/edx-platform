@@ -1,10 +1,10 @@
-from openedx.core.djangoapps.schedules.template_context import absolute_url
+from openedx.core.djangoapps.schedules.templatetags.ace import absolute_url
 from openedx.core.djangoapps.site_configuration.tests.factories import SiteFactory
 from openedx.core.djangolib.testing.utils import CacheIsolationTestCase, skip_unless_lms
 
 
 @skip_unless_lms
-class TestTemplateContext(CacheIsolationTestCase):
+class TestAbsoluteUrl(CacheIsolationTestCase):
     def setUp(self):
         self.site = SiteFactory.create()
         self.site.domain = 'example.com'
