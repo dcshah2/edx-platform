@@ -19,6 +19,7 @@ from edx_ace.utils import date
 from lms.djangoapps.discussion.config.waffle import waffle, FORUM_RESPONSE_NOTIFICATIONS, SEND_NOTIFICATIONS_FOR_COURSE
 from lms.djangoapps.discussion.tasks import _should_send_message, _generate_ga_pixel_url
 import lms.lib.comment_client as cc
+from openedx.core.djangoapps.site_configuration.models import SiteConfiguration
 from openedx.core.djangoapps.content.course_overviews.tests.factories import CourseOverviewFactory
 from openedx.core.djangoapps.schedules.template_context import get_base_template_context
 from openedx.core.djangoapps.waffle_utils.testutils import override_waffle_flag
@@ -180,6 +181,10 @@ class TaskTestCase(ModuleStoreTestCase):
         user = mock.Mock()
         comment = cc.Comment.find(id=self.comment['id']).retrieve()
         site = Site.objects.get_current()
+        SiteConfiguration.objects.create(site=site, enabled=True, values={
+            'contact_mailing_address': 'dummy-address',
+            'platform_name': 'dummy-platform-name'
+        })
         with waffle().override(FORUM_RESPONSE_NOTIFICATIONS):
             with mock.patch('lms.djangoapps.discussion.signals.handlers.get_current_site', return_value=site):
                 comment_created.send(sender=None, user=user, post=comment)
