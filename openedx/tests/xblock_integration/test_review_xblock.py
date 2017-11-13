@@ -346,7 +346,7 @@ class TestReviewFunctions(TestReviewXBlock):
         expected_correctness_text = 'correct'
         expected_problems = ['Review Problem 1', 'Review Problem 2', 'Review Problem 3',
                              'Review Problem 4', 'Review Problem 5', 'Review Problem 6']
-        expected_url_beginning = 'https://courses.edx.org/xblock/block-v1:DillonX/DAD101rx/3T2017+type@problem+block@'
+        expected_url_beginning = 'https://courses.edx.org/xblock/block-v1:DillonX/DAD101xr/3T2017+type@problem+block@'
 
         self.assertIn(expected_header_text, response.content)
         self.assertEqual(response.content.count(expected_correctness_text), num_desired)
@@ -398,7 +398,7 @@ class TestReviewFunctions(TestReviewXBlock):
         crum.set_current_user(user)
         result_urls = get_review_ids.get_problems(num_desired, self.course_actual.id)
 
-        url_beginning = 'https://courses.edx.org/xblock/block-v1:DillonX/DAD101rx/3T2017+type@problem+block@'
+        url_beginning = 'https://courses.edx.org/xblock/block-v1:DillonX/DAD101xr/3T2017+type@problem+block@'
         expected_urls = [
             (url_beginning + 'Problem_1', True, 0),
             (url_beginning + 'Problem_2', True, 0),
@@ -453,7 +453,7 @@ class TestReviewFunctions(TestReviewXBlock):
         crum.set_current_user(user)
         result_urls = get_review_ids.get_problems(num_desired, self.course_actual.id)
 
-        url_beginning = 'https://courses.edx.org/xblock/block-v1:DillonX/DAD101rx/3T2017+type@problem+block@'
+        url_beginning = 'https://courses.edx.org/xblock/block-v1:DillonX/DAD101xr/3T2017+type@problem+block@'
         expected_urls = [
             (url_beginning + 'Problem_1', True, 0),
             (url_beginning + 'Problem_2', True, 0),
@@ -504,7 +504,7 @@ class TestReviewFunctions(TestReviewXBlock):
         crum.set_current_user(user)
         result_url = get_review_ids.get_vertical(self.course_actual.id)
 
-        expected_url = 'https://courses.edx.org/xblock/block-v1:DillonX/DAD101rx/3T2017+type@'\
+        expected_url = 'https://courses.edx.org/xblock/block-v1:DillonX/DAD101xr/3T2017+type@'\
             'vertical+block@New_Unit_1'
 
         self.assertEqual(result_url, expected_url)
