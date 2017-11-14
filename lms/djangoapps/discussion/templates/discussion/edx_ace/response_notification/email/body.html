@@ -6,7 +6,10 @@ from django.utils.translation import ugettext as _
 %>
 
 {% block preview_text %}
-    ${_("Hi {username}").format(username=thread_username)}
+    ${_("{comment_author} replied to your {thread_title} post").format(
+        comment_author=comment_author,
+        thread_title=thread_title
+    )}
 {% endblock %}
 
 {% block content %}
@@ -14,23 +17,21 @@ from django.utils.translation import ugettext as _
     <tr>
         <td>
             <h1>
-                ${_("Hi {username},").format(username=thread_username)}
-            </h1>
-
-            <p>
-                ${_("{username} made the following reply to {thread_title} at {date}").format(
-                    username=comment_username,
-                    thread_title=thread_title,
-                    date=comment_created_at
+                ${_("{comment_author} replied to your {thread_title} post").format(
+                    comment_author=comment_author,
+                    thread_title=thread_title
                 )}
-            </p>
+            </h1>
 
             <p>
                 {{ comment_body }}
             </p>
 
             <p>
-                <a href="{{ post_link }}"> ${_("View the discussion.")} </a>
+                <a href="{{ post_link }}"> ${_("View discussion")} </a>
+            </p>
+            <p>
+                <a href="{{ unfollow_link }}"> ${_("Unfollow discussion")} </a>
             </p>
 
             <p>
