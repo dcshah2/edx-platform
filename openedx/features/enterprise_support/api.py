@@ -546,6 +546,7 @@ def get_dashboard_consent_notification(request, user, course_enrollments):
         )
     return ''
 
+
 def insert_enterprise_pipeline_elements(pipeline):
     """
     If the enterprise app is enabled, insert additional elements into the
